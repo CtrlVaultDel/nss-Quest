@@ -50,14 +50,19 @@ namespace Quest
                 int minAwesomeness = 0;
                 int maxAwesomeness = 100;
 
-                // Make a robe for the adventurer
+                // create a new robe for the adventurer
                 Robe robe = new Robe();
                 robe.Colors.Add("green");
                 robe.Colors.Add("red");
                 robe.Length = 90.0m;
 
+                // Create a new hat for the adventurer
                 Hat hat = new Hat();
                 hat.ShininessLevel = 5;
+
+                // Create a new prize for the adventurer
+                Prize prize = new Prize("Water Bottle");
+
 
                 // Make a new "Adventurer" object using the "Adventurer" class
                 Adventurer theAdventurer = new Adventurer(adventurerName, robe, hat);
@@ -95,6 +100,8 @@ namespace Quest
                 {
                     Console.WriteLine("I guess you did...ok? ...sorta. Still, you should get out of my sight.");
                 }
+                prize.ShowPrize(theAdventurer);
+
                 Console.Write("Would you like to try again?(Yes/No)");
                 string tempAnswer = Console.ReadLine();
                 tempAnswer = tempAnswer.ToUpper();
