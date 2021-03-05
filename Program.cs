@@ -13,6 +13,10 @@ namespace Quest
             Console.Write("What is your adventurer's name? > ");
             string adventurerName = Console.ReadLine();
 
+            // Will keep track of how many challenges the user completed successfully
+            int successfulChallenges = 0;
+
+            // Used in game's while loop
             string keepPlaying = "YES";
 
             // LOOP BEGIN
@@ -74,6 +78,9 @@ namespace Quest
                 Console.WriteLine(theAdventurer.GetDescription());
                 Console.WriteLine();
 
+                // Add extra points from prior successful challenges to awesomeness level
+                theAdventurer.Awesomeness += (successfulChallenges * 10);
+
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
                 List<Challenge> challenges = new List<Challenge>();
@@ -93,7 +100,14 @@ namespace Quest
                 // Loop through all the challenges and subject the Adventurer to them
                 foreach (Challenge challenge in challenges)
                 {
-                    challenge.RunChallenge(theAdventurer);
+                    bool passed = challenge.RunChallenge(theAdventurer);
+                    if (passed)
+                    {
+                        successfulChallenges++;
+                        Console.WriteLine($"Successful Challenges: {successfulChallenges}");
+                    }
+                    Console.WriteLine($"{theAdventurer.Name} has {theAdventurer.Awesomeness} points.");
+                    Console.WriteLine();
                 }
 
                 // This code examines how Awesome the Adventurer is after completing the challenges
@@ -118,6 +132,7 @@ namespace Quest
                 Console.WriteLine(tempAnswer);
                 if (tempAnswer == "YES")
                 {
+                    Console.Clear();
                     Console.WriteLine("Excellent choice, another round of quest coming up!");
                 }
                 else if (tempAnswer == "NO")
