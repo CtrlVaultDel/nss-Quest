@@ -52,12 +52,15 @@ namespace Quest
 
                 // Make a robe for the adventurer
                 Robe robe = new Robe();
-                robe.Colors.Add("Green");
-                robe.Colors.Add("Red");
+                robe.Colors.Add("green");
+                robe.Colors.Add("red");
                 robe.Length = 90.0m;
 
+                Hat hat = new Hat();
+                hat.ShininessLevel = 5;
+
                 // Make a new "Adventurer" object using the "Adventurer" class
-                Adventurer theAdventurer = new Adventurer(adventurerName, robe);
+                Adventurer theAdventurer = new Adventurer(adventurerName, robe, hat);
                 Console.WriteLine(theAdventurer.GetDescription());
                 Console.WriteLine();
 
