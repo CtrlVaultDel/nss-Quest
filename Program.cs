@@ -15,6 +15,7 @@ namespace Quest
 
             string keepPlaying = "YES";
 
+            // LOOP BEGIN
             while (keepPlaying == "YES")
             {
                 // Create a few challenges for our Adventurer's quest
@@ -41,6 +42,11 @@ namespace Quest
                     4, 20
                 );
 
+                Challenge milesPerHour = new Challenge("How many miles would you travel if you went 60mph for an hour?", 60, 25);
+
+                Challenge minutesCalc = new Challenge("How many seconds is in 1.25 minutes?", 75, 20);
+
+                Challenge[] challengeArray = { twoPlusTwo, theAnswer, whatSecond, guessRandom, favoriteBeatle, milesPerHour, minutesCalc };
                 // "Awesomeness" is like our Adventurer's current "score"
                 // A higher Awesomeness is better
 
@@ -63,7 +69,6 @@ namespace Quest
                 // Create a new prize for the adventurer
                 Prize prize = new Prize("Water Bottle");
 
-
                 // Make a new "Adventurer" object using the "Adventurer" class
                 Adventurer theAdventurer = new Adventurer(adventurerName, robe, hat);
                 Console.WriteLine(theAdventurer.GetDescription());
@@ -71,14 +76,19 @@ namespace Quest
 
                 // A list of challenges for the Adventurer to complete
                 // Note we can use the List class here because have the line "using System.Collections.Generic;" at the top of the file.
-                List<Challenge> challenges = new List<Challenge>()
+                List<Challenge> challenges = new List<Challenge>();
+
+                // Prepare random number variable outside of loop
+                Random rndm = new Random();
+
+                // Put 5 random challenges from the challengesArray in the challenges List
+                for (int i = 0; i < 5; i++)
                 {
-                    twoPlusTwo,
-                    theAnswer,
-                    whatSecond,
-                    guessRandom,
-                    favoriteBeatle
-                };
+                    int randomChallenge = rndm.Next(0, challengeArray.Length);
+                    Challenge c = challengeArray[randomChallenge];
+                    challenges.Add(c);
+                }
+
 
                 // Loop through all the challenges and subject the Adventurer to them
                 foreach (Challenge challenge in challenges)
